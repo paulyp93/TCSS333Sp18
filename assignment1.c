@@ -51,7 +51,7 @@ int main(void)
             decimalToBinary(decimalValue);
             printf("in binary\n");
             subnetMask = subnetMaskBinToDec(mask);
-            printf("\n:: %d \n", subnetMask);
+            printf("\n:: %u \n", subnetMask);
             decimalToBinary(subnetMask);
             //printf("\nThe subnet mask is %li in decimal and \n", subnetMask);
 
@@ -118,9 +118,9 @@ int decimalToBinary(long decNumber)
 {
     int numOfBits, binaryNum, decCopy;
  
-    for (numOfBits = 63; numOfBits >= 0; numOfBits--)
+    for (numOfBits = 31; numOfBits >= 0; numOfBits--)
     {
-        binaryNum = decNumber >> numOfBits;
+         binaryNum = decNumber >> numOfBits;
  
         if (binaryNum & 1)
             printf("1");
@@ -138,7 +138,7 @@ int decimalToBinary(long decNumber)
 
 int subnetMaskBinToDec(int subnetMaskInt) 
 {
-    int subnetMask, numOfBits;
+    int subnetMask=0, numOfBits;
 
     for (numOfBits = 31; numOfBits >= (32 - subnetMaskInt); numOfBits--)
     {
