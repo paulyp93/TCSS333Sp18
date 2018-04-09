@@ -59,15 +59,17 @@ int main(void)
             
             // Decimal value section of option 1 
             decimalValue = getDecimalValue(sgmnt1, sgmnt2, sgmnt3, sgmnt4);
-            printf("\nThe IP-address is %li in decimal and\n", decimalValue);
+            printf("\nThe IP-address is %lu in decimal and\n", decimalValue);
             decimalToBinary(decimalValue);
             printf("in binary\n");
 
             //subnet mask section of option 1
             subnetMask = subnetMaskBinToDec(mask);
-            printf("\nThe subnet masl is %u in decimal and \n", subnetMask);
+
+            printf("\nThe subnet mask is %u in decimal and \n", subnetMask);
+
             decimalToBinary(subnetMask);
-            //printf("\nThe subnet mask is %li in decimal and \n", subnetMask);
+            printf("in binary\n");
 
 
         } else if (userChoice == 2) {
@@ -134,7 +136,7 @@ int decimalToBinary(long decNumber)
  
     for (numOfBits = 31; numOfBits >= 0; numOfBits--)
     {
-        binaryNum = decNumber >> numOfBits;
+         binaryNum = decNumber >> numOfBits;
  
         if (binaryNum & 1)
             printf("1");
@@ -152,6 +154,7 @@ int decimalToBinary(long decNumber)
 
 int subnetMaskBinToDec(int subnetMaskInt) 
 {
+
     unsigned int subnetMask = 0, numOfBits;
 
     for (numOfBits = 31; numOfBits >= (32 - subnetMaskInt); numOfBits--)
