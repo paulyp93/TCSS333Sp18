@@ -7,23 +7,31 @@
 #include <stdio.h>
 #include <math.h>
 
+
+
 int minMaxCheck(int s1, int s2, int s3, int s4, int msk);
 long getDecimalValue(int s1, int s2, int s3, int s4);
 int decimalToBinary(long decNumber);
-
 int subnetMaskBinToDec(int subnetMaskInt);
+
+
 
 int main(void)
 {
-    int userChoice = 0, sgmnt1 = 0, sgmnt2 = 0, sgmnt3 = 0, sgmnt4 = 0, mask = 0;
-    int hSgmnt1, hSgmnt2, hSgmnt3, hSgmnt4;
-    int checkMinMax;
-    long decimalValue;
-    int subnetMask = 0;
+
+
+    unsigned int userChoice = 0, sgmnt1 = 0, sgmnt2 = 0, sgmnt3 = 0, sgmnt4 = 0, mask = 0;
+    unsigned int hSgmnt1, hSgmnt2, hSgmnt3, hSgmnt4;
+    unsigned int checkMinMax;
+    unsigned long decimalValue;
+    unsigned int subnetMask = 0;
+    //controls the while loop
     char running = 'r';
 
 
+
     printf("\n\n============================\n=======[Assignment 1]=======\n============================\n\n\n");
+
 
     while(running == 'r')
     {
@@ -31,12 +39,16 @@ int main(void)
         printf("What type of conversion do you want? \nEnter 1 for IP-address and subnet, 2 for the host and network prefix: ");
         scanf("%d", &userChoice);
 
+        // IF THE USER CHOOSE OPTION 1
         if (userChoice == 1)
         {
+
+            //Entering the main message adderess
             printf("\nEnter the message address: ");
             scanf(" %d.%d.%d.%d/%d", &sgmnt1, &sgmnt2, &sgmnt3, &sgmnt4, &mask);
             checkMinMax = minMaxCheck(sgmnt1, sgmnt2, sgmnt3, sgmnt4, mask);
             
+            //makes sure that the entered values are non-negative
             if (checkMinMax != 1) {
                 while (checkMinMax == 0){
                     printf("Wrong address, try again: ");
@@ -45,13 +57,15 @@ int main(void)
                 }
             }
             
-            //printf("\nEntered address: %d.%d.%d.%d/%d \n", sgmnt1, sgmnt2, sgmnt3, sgmnt4, mask);
+            // Decimal value section of option 1 
             decimalValue = getDecimalValue(sgmnt1, sgmnt2, sgmnt3, sgmnt4);
             printf("\nThe IP-address is %li in decimal and\n", decimalValue);
             decimalToBinary(decimalValue);
             printf("in binary\n");
+
+            //subnet mask section of option 1
             subnetMask = subnetMaskBinToDec(mask);
-            printf("\n:: %d \n", subnetMask);
+            printf("\nThe subnet masl is %u in decimal and \n", subnetMask);
             decimalToBinary(subnetMask);
             //printf("\nThe subnet mask is %li in decimal and \n", subnetMask);
 
@@ -118,7 +132,7 @@ int decimalToBinary(long decNumber)
 {
     int numOfBits, binaryNum, decCopy;
  
-    for (numOfBits = 63; numOfBits >= 0; numOfBits--)
+    for (numOfBits = 31; numOfBits >= 0; numOfBits--)
     {
         binaryNum = decNumber >> numOfBits;
  
@@ -138,7 +152,7 @@ int decimalToBinary(long decNumber)
 
 int subnetMaskBinToDec(int subnetMaskInt) 
 {
-    int subnetMask, numOfBits;
+    unsigned int subnetMask = 0, numOfBits;
 
     for (numOfBits = 31; numOfBits >= (32 - subnetMaskInt); numOfBits--)
     {
@@ -148,8 +162,6 @@ int subnetMaskBinToDec(int subnetMaskInt)
     return subnetMask;
 }
 
-
-//11111111 11111111 11111111 11111111    11111111 11111111 11111111 00000000
 
 
 
